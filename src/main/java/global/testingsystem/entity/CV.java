@@ -107,8 +107,22 @@ public class CV {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
 
-	public CV(int cvId, String applicantName, String email, String phone, Date createdDate, String files, int status) {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public CV(int cvId, String applicantName, String email, String phone, Date createdDate, String files,
+			String description, int status) {
 		super();
 		this.cvId = cvId;
 		this.applicantName = applicantName;
@@ -116,7 +130,10 @@ public class CV {
 		this.phone = phone;
 		this.createdDate = createdDate;
 		this.files = files;
+		this.description = description;
 		this.status = status;
 	}
+
+
 
 }

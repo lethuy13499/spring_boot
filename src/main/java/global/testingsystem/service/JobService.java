@@ -22,4 +22,7 @@ public interface JobService {
 	
 	List<Job> FinByStatus(int status);
 
+	boolean deleteJob(int jobId);
+
+
 }

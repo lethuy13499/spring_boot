@@ -86,4 +86,18 @@ public class JobServiceImpl implements JobService{
 		return  repo.findJobByStatus(status);
 	}
 
+	@Override
+	public boolean deleteJob(int jobId) {
+		boolean isSuccess = false;
+		Job job = repo.getOne(jobId);
+		try {
+			repo.delete(job);
+			isSuccess = true;
+		} catch (Exception e) {
+			log.error("delete failed" + e.getMessage());
+			isSuccess = false;
+		}
+		return isSuccess;
+	}
+
 }

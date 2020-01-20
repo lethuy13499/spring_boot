@@ -37,9 +37,7 @@ public class NewsServiceImpl implements NewsService {
 		return deletedNews;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cmcglobal.rrcexample.service.NewsService#getAllNews()
-	 */
+
 	@Override
 	public List<News> getAllNewsByOrderByNewsIdDesc() {
 		return newsRepo.findAllByOrderByNewsIdDesc();
@@ -47,10 +45,7 @@ public class NewsServiceImpl implements NewsService {
 //		public List<StudentEntity> findAllByOrderByIdAsc();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cmcglobal.rrcexample.service.NewsService#searchNews(java.lang.String)
-	 * 
-	 */
+
 	@Override
 	public List<News> searchAllNewsCMS(String keyword) {
 		List<News> matchedTitle = newsRepo.searchAllNewsCMS(keyword);
@@ -93,17 +88,12 @@ public class NewsServiceImpl implements NewsService {
 		return matched;
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.cmcglobal.rrcexample.service.NewsService#getNews(int)
-	 */
+	
 	@Override
 	public News findNewsById(int id) {
 		return newsRepo.findByNewsId(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cmcglobal.rrcexample.service.NewsService#sortByProperty(int)
-	 */
 	@Override
 	public List<News> sortByProperty(int index,int typeSort,String keySearch) {
 
@@ -150,12 +140,11 @@ public class NewsServiceImpl implements NewsService {
 		 return newsRepo.findPageNewsNews();
 	}
 
-	// MR DUC thêm ngày 13.01.2018 ** START **
 	@Override
 	public void updateNewActiveStatus(int status, int news_id) {
 		newsRepo.updateNewActiveStatus(status, news_id);
 	}
-	// MR DUC thêm ngày 13.01.2018 ** END **
+	
 
 	@Override
 	public boolean insertNew(News s) {

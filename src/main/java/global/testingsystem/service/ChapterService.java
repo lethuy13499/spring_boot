@@ -50,7 +50,6 @@ public interface ChapterService {
 
 	List<Integer> getListChapterIdBySubjectId(int subjectId);
 
-	// Linh
 	List<SubjectResult> getChapterBySubjectAndChapterOrderAsc(int subjectId);
 
 	void updateDraggedChapter(int currentPosition, int subjectId, int parentId);
@@ -61,10 +60,10 @@ public interface ChapterService {
 
 	void moveChapter(int desiredPosition, int subjectId, int parentId);
 
-	// thuy
+
 	List<Chapter> getAllChapter();
 
-	// trung
+
 
 	List<Chapter> findByParent_Id(int parentId);
 

@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,8 +86,18 @@ public class JobController {
 	//update
 	@PostMapping(value= ConstantPage.REST_API_UPDATE_JOB,produces = { MediaType.APPLICATION_PROBLEM_JSON_VALUE })
 	public ResponseEntity<Object> update(@RequestParam("job") String job){
+		
+		
 		   return null;
 		
+	}
+	//delete
+	@DeleteMapping(value = ConstantPage.REST_API_DELETE_JOB_BY_ID, produces = {
+			MediaType.APPLICATION_PROBLEM_JSON_VALUE })
+	public boolean delete(@PathVariable int jobId) {
+		Job jobs = service.findJobById(jobId);
+	
+		return service.deleteJob(jobId);
 	}
 
 }
