@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import global.testingsystem.entity.CV;
+import global.testingsystem.entity.Job;
 import global.testingsystem.entity.Welfare;
 import global.testingsystem.repository.CVRepository;
 import global.testingsystem.service.CvService;
@@ -78,6 +79,21 @@ public class CVServiceImpl implements CvService{
 	@Override
 	public List<CV> searhByStatus(int status) {
 		return repo.findCVByStatus(status);
+	}
+
+	@Override
+	public boolean deleteCv(int cvId) {
+		boolean isSuccess = false;
+		CV cv = repo.getOne(cvId);
+		try {
+			repo.delete(cv);
+			isSuccess = true;
+		} catch (Exception e) {
+			log.error("delete failed" + e.getMessage());
+			isSuccess = false;
+		}
+		return isSuccess;
+		
 	}
 
 }

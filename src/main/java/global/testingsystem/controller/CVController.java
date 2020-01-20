@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,5 +62,20 @@ public ResponseEntity<Object> insert(@RequestParam("cv") String cv){
 	
 }
 //update
+@PostMapping(value= ConstantPage.REST_API_EDIT_CV,produces = { MediaType.APPLICATION_PROBLEM_JSON_VALUE })
+public ResponseEntity<Object> update(@RequestParam("cv") String cv){
+	
+	
+	   return null;
+	
+}
+//delete
+@DeleteMapping(value = ConstantPage.REST_API_DELETE_CV, produces = {
+		MediaType.APPLICATION_PROBLEM_JSON_VALUE })
+public boolean delete(@PathVariable int cvId) {
+	CV cv = service.findCVById(cvId);
+
+	return service.deleteCv(cvId);
+}
 
 }
