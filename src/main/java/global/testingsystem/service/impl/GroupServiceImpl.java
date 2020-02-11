@@ -103,7 +103,7 @@ public class GroupServiceImpl implements GroupService {
 		@Override
 		public List<Object> getlistGroup() {
 			// TODO Auto-generated method stub
-			return groupRepository.getListGroup();
+			return null;
 		}
 
 		@Override

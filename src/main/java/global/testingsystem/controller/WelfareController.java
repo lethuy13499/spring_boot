@@ -41,22 +41,19 @@ public class WelfareController {
 
 //create
 	@PostMapping(value = ConstantPage.REST_API_CREATE_WELFARE, produces = { MediaType.APPLICATION_PROBLEM_JSON_VALUE })
-	public ResponseEntity<Object> insert(@RequestParam("welfare") String welfare) {
+	public ResponseEntity<Object> insert(@RequestParam("welfare")  String welfare) {
 		JSONObject jsonObject = new JSONObject(welfare);
-		int welfareId = jsonObject.getInt("welfareId");
+//		int welfareId = jsonObject.getInt("welfareId");
 		String desciption = jsonObject.getString("description");
 		Welfare welfareInsert = new Welfare();
 		welfareInsert.setDesciption(jsonObject.getString("description"));
 		Date date = new Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		welfareInsert.setCreatedDate(sqlDate);
-
 		welfareInsert.setStatus(jsonObject.getInt("status"));
-
 		boolean isSuccsess = service.addWelfare(welfareInsert);
 		return new ResponseEntity<Object>(isSuccsess, HttpStatus.OK);
 	}
-
 //edit
 	@PutMapping(value = ConstantPage.REST_API_EDIT_WELFARE, produces = { MediaType.APPLICATION_PROBLEM_JSON_VALUE })
 	public ResponseEntity<Object> update(@RequestParam("welfare") String welfare) {

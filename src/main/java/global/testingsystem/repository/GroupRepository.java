@@ -21,17 +21,12 @@ import global.testingsystem.entity.Users;
 public interface GroupRepository extends JpaRepository<Group, Integer>{
     Group findGroupByName(String name);
     
-    @Query(value = "SELECT a.id as id1, a.name as name, a.parent_id, a.type,a.created_at, a.updated_at, b.id as id2, b.name as name2 \r\n" + 
-    		"			 FROM groups as a \r\n" + 
-    		"			 left join groups as b \r\n" + 
-    		"			 on a.parent_id = b.id where a.name LIKE CONCAT('%',:name,'%') ", nativeQuery = true)
+    @Query(value = "SELECT * from groups where name LIKE CONCAT('%',:name,'%') ", nativeQuery = true)
     List<Object> searchGroupByName(@Param("name") String name);
     
-    @Query(value = "SELECT a.id as id1, a.name as name, a.parent_id, a.type,a.created_at, a.updated_at, b.id as id2, b.name as name2 " + 
-			" FROM groups as a " + 
-			" left join groups as b " + 
-			" on a.parent_id = b.id  order by a.id desc", nativeQuery = true)
-	List<Object> getListGroup();
+//    @Query(value = "SELECT * from groups", nativeQuery = true)
+//	List<Object> getListGroup();
+    
 	@Query(value="SELECT * \r\n" + 
 			"   FROM groups gr \r\n" + 
 			"   WHERE gr.id IN (SELECT eg.group_id \r\n" + 
