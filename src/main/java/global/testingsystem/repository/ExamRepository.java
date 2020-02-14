@@ -155,6 +155,10 @@ public interface ExamRepository extends JpaRepository<Exam, Integer> {
 	@Query(value="select*from exams where type=1 and exam_mode=3 and CURDATE()-DATE(exams.end_date) <= 2 and DATE(exams.end_date)-CURDATE() >= 0 and status=1", nativeQuery = true)
 	List<Exam>getExam();
 	//
+	 @Query(value = "select * from exams",nativeQuery = true)
+	 List<Exam>getListExam();
+	
+	
 	@Query(value ="select*from exams where type=1 and exam_mode=:exam_mode and status=1",nativeQuery = true)
 	List<Exam>getExamByExamMode(@Param("exam_mode") int exam_mode );
 	

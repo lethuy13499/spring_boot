@@ -176,11 +176,6 @@ public class ExamController {
 		return listExam;
 	}
 
-	// trung 14/06
-	/*
-	 * Linh Gia created by admin: type = 0 created by user: type = 1
-	 *
-	 */
 	@GetMapping(value = ConstantPage.REST_API_GET_PRACTICE, produces = { MediaType.APPLICATION_PROBLEM_JSON_VALUE })
 	public List<Object> getListPractice(@RequestParam int user_id) {
 		return examService.listPractice(user_id);
@@ -964,6 +959,10 @@ public class ExamController {
 	public List<Exam> getExamComingSoon(@PathVariable("userid") int userId) {
 		return examService.getExamComingSoon(userId);
 
+	}
+	@GetMapping(value ="/exam/getListExam")
+	public List<Exam> getListExams(){
+		return examService.getListExam();
 	}
 
 }

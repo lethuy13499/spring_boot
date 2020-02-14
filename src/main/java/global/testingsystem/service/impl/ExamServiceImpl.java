@@ -738,6 +738,12 @@ public class ExamServiceImpl implements ExamService {
 		return examRepository.getExamComingSoon(userId);
 	}
 
+	@Override
+	public List<Exam> getListExam() {
+		
+		return examRepository.findAll();
+	}
+
 
 
 }

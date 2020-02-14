@@ -105,4 +105,6 @@ public interface ExamService {
 	List<Object> getRestUser(int id);
 	List<Exam> getExamComingSoon(int userId);
 	
+	List<Exam> getListExam();
+	
 }

@@ -224,6 +224,8 @@ public class ChapterController {
 		JSONObject jsonObject = new JSONObject(chapter);
 		int id = jsonObject.getInt("id");
 		String name = jsonObject.getString("name");
+		int parent_id = jsonObject.getInt("parent_name");
+		int subject_id = jsonObject.getInt("subject_name");
 
 		List<Chapter> chapters = chapterService.getListChapterByName(name);
 		if (chapters != null) {
@@ -235,10 +237,12 @@ public class ChapterController {
 		}
 		Chapter chapterUpdate2 = chapterService.findChapterById(id);
 		chapterUpdate2.setName(name);
+		chapterUpdate2.setParent_id(parent_id);
 		chapterUpdate2.setCreated_at(chapterUpdate2.getCreated_at());
 		Date date = new Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		chapterUpdate2.setUpdated_at(sqlDate);
+		
 		boolean isSuccess = chapterService.editChapter(chapterUpdate2);
 		return new ResponseEntity<Object>(isSuccess, HttpStatus.OK);
 	}
