@@ -96,4 +96,10 @@ public class CVServiceImpl implements CvService{
 		
 	}
 
+	@Override
+	public List <CV> findCVByName(String files) {
+		
+		return repo.findByFiles(files);
+	}
+
 }

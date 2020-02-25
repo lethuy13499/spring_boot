@@ -3,11 +3,14 @@ package global.testingsystem.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.Multipart;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import global.testingsystem.entity.CV;
 import global.testingsystem.entity.Job;
@@ -40,13 +44,13 @@ public List<CV> getListCV() {
 }
 //insert cv
 @PostMapping(value= ConstantPage.REST_API_CREATE_CV ,produces = { MediaType.APPLICATION_PROBLEM_JSON_VALUE })
-public ResponseEntity<Object> insert(@RequestParam("cv") String cv){
+public ResponseEntity<Object> insert(@RequestParam("files") MultipartFile files,@RequestParam("cv") String cv){
 	JSONObject jsonObject = new JSONObject(cv);
 	String applicantName = jsonObject.getString("applicantName");
 	String email = jsonObject.getString("email");
 	String phone = jsonObject.getString("phone");
-	String files = jsonObject.getString("files");
 	String description = jsonObject.getString("description");
+	String fileName = StringUtils.cleanPath(files.getOriginalFilename());
 	CV CVInsert = new CV();
 	CVInsert.setApplicantName(jsonObject.getString("applicantName"));
 	CVInsert.setEmail(jsonObject.getString("email"));
@@ -54,7 +58,7 @@ public ResponseEntity<Object> insert(@RequestParam("cv") String cv){
 	Date date = new Date();
 	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 	CVInsert.setCreatedDate(sqlDate);
-	CVInsert.setFiles(jsonObject.getString("files"));
+	CVInsert.setFiles(fileName);
 	CVInsert.setDescription(jsonObject.getString("desciption"));
 	boolean isSuccsess = service.addCV(CVInsert);
 	
@@ -77,5 +81,9 @@ public boolean delete(@PathVariable int cvId) {
 
 	return service.deleteCv(cvId);
 }
+
+
+
+
 
 }

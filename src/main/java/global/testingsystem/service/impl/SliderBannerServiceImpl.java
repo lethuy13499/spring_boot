@@ -14,10 +14,6 @@ import global.testingsystem.entity.SlideBanner;
 import global.testingsystem.repository.SlideBannerRepository;
 import global.testingsystem.service.SlideBannerService;
 
-/**
- * Create by: HaNuoc Create date: Nov 13, 2018 Modifier: HaNuoc Modified date:
- * Nov 13, 2018 Description: .... Version 1.0
- */
 @Service
 public class SliderBannerServiceImpl implements SlideBannerService {
 

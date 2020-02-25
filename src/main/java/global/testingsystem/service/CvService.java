@@ -22,6 +22,8 @@ public interface CvService {
 	
 	List<CV> searhByStatus(int status);
 	
+	List <CV> findCVByName (String files);
+	
 	boolean deleteCv(int cvId);
 
 }

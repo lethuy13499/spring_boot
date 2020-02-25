@@ -34,4 +34,9 @@ public interface CVRepository extends JpaRepository<CV, Integer>{
 	
 	@Query(value="select * from cv where status=:status",nativeQuery = true)
 	public List<CV> findCVByStatus(@Param("status") int status);
+	
+	// findByFiles
+	
+	@Query(value ="select * from cv where files =: files",nativeQuery= true)
+	public List<CV> findByFiles(@Param("files") String files);
 }
