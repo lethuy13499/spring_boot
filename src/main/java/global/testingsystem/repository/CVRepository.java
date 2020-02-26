@@ -12,7 +12,7 @@ import global.testingsystem.entity.CV;
 public interface CVRepository extends JpaRepository<CV, Integer>{
  
 	//getAll CV
-	@Query(value="select*from cv order by createdDate desc",nativeQuery = true)
+	@Query(value="select*from cv order by created_date desc",nativeQuery = true)
 	public List<CV> getAllCv();
 	
 	//findCvByEmail
